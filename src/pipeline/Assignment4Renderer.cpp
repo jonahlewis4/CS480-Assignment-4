@@ -268,7 +268,9 @@ bool Assignment4Renderer::uploadMesh(Mesh& mesh,
     // 3. Copy index data into GL_ELEMENT_ARRAY_BUFFER.
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, static_cast<GLsizeiptr>(indices.size()) * sizeof(unsigned int), indices.data(), GL_STATIC_DRAW);
     // 4. Describe attribute 0 as position (x, y, z).
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, static_cast<GLsizeiptr>(sizeof(Vertex)), nullptr);
     // 5. Describe attribute 1 as color (r, g, b).
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, static_cast<GLsizeiptr>(sizeof(Vertex)), reinterpret_cast<void *>(3 * sizeof(float)));
     // 6. Enable both vertex attributes.
     //
     // Expected layout of one Vertex:
