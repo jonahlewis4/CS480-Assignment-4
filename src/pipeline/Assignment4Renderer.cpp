@@ -255,8 +255,18 @@ bool Assignment4Renderer::uploadMesh(Mesh& mesh,
 
     // TODO (Assignment 4 - CPU to GPU data upload):
     // 1. Create and bind the VAO, VBO, and EBO.
+    glGenVertexArrays(1, &mesh.vao);
+    glBindVertexArray(mesh.vao);
+
+    glGenBuffers(1, &mesh.vbo);
+    glBindBuffer(GL_ARRAY_BUFFER, mesh.vbo);
+
+    glGenBuffers(1, &mesh.ebo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh.ebo);
     // 2. Copy vertex data into GL_ARRAY_BUFFER.
+    glBufferData(GL_ARRAY_BUFFER, static_cast<GLsizeiptr>(vertices.size()) * sizeof(Vertex), vertices.data(), GL_STATIC_DRAW);
     // 3. Copy index data into GL_ELEMENT_ARRAY_BUFFER.
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, static_cast<GLsizeiptr>(indices.size()) * sizeof(unsigned int), indices.data(), GL_STATIC_DRAW);
     // 4. Describe attribute 0 as position (x, y, z).
     // 5. Describe attribute 1 as color (r, g, b).
     // 6. Enable both vertex attributes.
