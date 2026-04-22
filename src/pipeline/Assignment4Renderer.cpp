@@ -272,7 +272,8 @@ bool Assignment4Renderer::uploadMesh(Mesh& mesh,
     // 5. Describe attribute 1 as color (r, g, b).
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, static_cast<GLsizeiptr>(sizeof(Vertex)), reinterpret_cast<void *>(3 * sizeof(float)));
     // 6. Enable both vertex attributes.
-    //
+    glEnableVertexAttribArray(0);
+    glEnableVertexAttribArray(1);
     // Expected layout of one Vertex:
     //   px py pz r g b
     //
