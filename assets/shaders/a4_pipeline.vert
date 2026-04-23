@@ -14,7 +14,11 @@ void main()
     // TODO: Transform each vertex from object space to clip space.
     // Use the lecture equation: p_clip = P * V * M * p_obj
     // Also pass a view-space depth quantity to the fragment shader.
-    gl_Position = vec4(aPos, 1.0);
+
+    vec4 startPos = vec4(aPos, 1.0);
+    vec4 cameraPosition = uView * uModel * startPos;
+    vec4 clipPosition = uProjection * cameraPosition;
+    gl_Position = clipPosition;
     vColor = aColor;
-    vViewDepth = 1.0;
+    vViewDepth = cameraPosition.z;
 }

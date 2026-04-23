@@ -10,5 +10,5 @@ uniform float uFarPlane;
 void main()
 {
     // TODO: Output the interpolated color from the vertex shader.
-    FragColor = vec4(1.0, 0.0, 1.0, 1.0);
+    FragColor = vec4(vColor.r, vColor.g, vColor.b, 1);
 }

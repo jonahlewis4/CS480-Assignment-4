@@ -68,7 +68,7 @@ void main()
     // TODO (Assignment 4 - Fragment Processing):
     // Use the interpolated vertex color for the final fragment color.
     // Keep the depth-view branch disabled for the student version.
-    FragColor = vec4(1.0, 0.0, 1.0, 1.0);
+    FragColor = vec4(vColor.r, vColor.g, vColor.b, 1);
 }
 )GLSL";
 
