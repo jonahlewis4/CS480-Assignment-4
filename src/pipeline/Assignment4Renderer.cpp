@@ -307,16 +307,35 @@ void Assignment4Renderer::setRenderModeState(RenderMode mode) const {
     //   3 Filled (No Depth)
     //   4 Filled (Depth Test)
     //
+
+    switch (mode) {
+        case RenderMode::Points: {
+            glPolygonMode(GL_FRONT_AND_BACK, GL_POINT);
+            glPointSize(5);
+            break;
+        }
+        case RenderMode::PrimitiveTriangle: {
+            glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+            break;
+        }
+        case RenderMode::FilledNoDepth: {
+            glDisable(GL_DEPTH_TEST);
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+            break;
+        }
+        case RenderMode::FilledDepth: {
+            glEnable(GL_DEPTH_TEST);
+            glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+            glDepthFunc(GL_LESS);
+        }
+    }
+
     // Suggested OpenGL functions:
     //   glPolygonMode(...)
     //   glEnable(GL_DEPTH_TEST)
     //   glDisable(GL_DEPTH_TEST)
     //   glDepthFunc(GL_LESS)
     //   glPointSize(...)
-    //
-    // Temporary fallback so the program still runs:
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-    glDisable(GL_DEPTH_TEST);
 }
 
 void Assignment4Renderer::drawObject(const SceneObject& object) const {
