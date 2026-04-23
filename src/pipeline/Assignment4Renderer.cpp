@@ -44,9 +44,12 @@ void main()
     // Then write the result to gl_Position.
     // Also compute a depth-related value from view space for later use.
 
-    gl_Position = vec4(aPos, 1.0);
+    vec4 startPos = vec4(aPos, 1.0);
+    vec4 cameraPosition = uView * uModel * startPos;
+    vec4 clipPosition = uProjection * cameraPosition;
+    gl_Position = clipPosition;
     vColor = aColor;
-    vViewDepth = 1.0;
+    vViewDepth = cameraPosition.z;
 }
 )GLSL";
 
